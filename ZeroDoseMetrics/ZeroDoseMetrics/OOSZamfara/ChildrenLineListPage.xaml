@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ZeroDoseMetrics.OOSZamfara.ChildrenLineListPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+ New Enumeration"
+                     Clicked="EnumerateChild_Clicked"/>
+        <ToolbarItem Text="Vaccination Log"
+                     Clicked="vaccination_log"/>
+    </ContentPage.ToolbarItems>
+
+
+     <CollectionView x:Name="ChildrenLineList">
+        <CollectionView.Header>
+            <Grid Padding="10" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="100"/> 
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+           <!-- Activity Indicator to show during API call -->
+        <ActivityIndicator x:Name="activityIndicator" IsRunning="False" IsVisible="False" />
+         <Label x:Name="feedbackLabel" Text="" TextColor="{StaticResource blueColor}" HorizontalOptions="Center" />        
+                <Label Text="Child" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Caregiver" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Settelment" Grid.Column="2" FontAttributes="Bold" TextColor="Black"/>
+                <Label x:Name="countTotalLbl" Grid.Column="3" TextColor="Red"/>
+                <Switch x:Name="downloadLineList" IsToggled="False" Grid.Column="4"/>
+            </Grid> 
+        </CollectionView.Header>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Label Text="{Binding ChildName}" FontSize="Small" WidthRequest="100"/>
+                    <Label Text="{Binding CaregiverName}" FontSize="Small" WidthRequest="100"/>
+                    <Label Text="{Binding SettlementName}" FontSize="Small" WidthRequest="100"/>
+                    <Button FontSize="Small" Text="Navigate"  Clicked="Button_Clicked" CommandParameter="{Binding .}" />
+                    <Button FontSize="Small" Text="Vaccinate"    Clicked="Button_Vaccinate" CommandParameter="{Binding .}" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+        <!--END Children Page Listing-->
+
+</ContentPage>
+

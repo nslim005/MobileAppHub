@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ZeroDoseMetrics.OOSZamfara.VaccinLogPage">
+
+     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Synchronize"
+                     Clicked="Synchronize_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <CollectionView x:Name="ChildrenLineList">
+        <CollectionView.Header>
+            <Grid Padding="10" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="100"/> 
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+           
+                <Label x:Name="hey" Text="Child" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Caregiver" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Settelment" Grid.Column="2" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Status" Grid.Column="3" FontAttributes="Bold" TextColor="Black" />
+                <Label Text=" " Grid.Column="4" />
+            </Grid>
+        </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    
+                    <!--<Label Text="{Binding Id}" WidthRequest="20"/>-->
+                    <Label Text="{Binding ChildName}" FontSize="Small" WidthRequest="100"/>
+                    <Label Text="{Binding CaregiverName}" FontSize="Small" WidthRequest="100"/>
+                    <Label Text="{Binding SettlementName}" FontSize="Small" WidthRequest="100"/>
+                    <Label Text="Vaccinated" FontSize="Small" WidthRequest="100" TextColor="Green"/>
+                    <CheckBox x:Name="checkedForSynchronization" Color="#1F90FF" IsChecked="False"
+                             CheckedChanged="checkedForSynchronization_CheckedChanged"/>
+                   
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+        <!--END Children Page Listing-->
+
+</ContentPage>
+

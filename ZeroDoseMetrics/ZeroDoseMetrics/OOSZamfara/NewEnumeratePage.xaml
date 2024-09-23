@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+   xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ZeroDoseMetrics.OOSZamfara.NewEnumeratePage">
+
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem Text="save"
+                     Clicked="save_Clicked"/>-->
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+         <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout x:Name="updateInfo" Padding="10" >
+            <Label Text="A. Enumeration Information" FontSize="Medium" FontAttributes="Bold"/>
+
+            <Label Text="1. Name of Enumerator" />
+            <Entry x:Name="EnumeratorNameEntry"  IsEnabled="False" FontSize="Default"/>
+
+            <Label Text="2. Mobile Number"/>
+            <Entry x:Name="phoneNoEntry" FontSize="Default" IsEnabled="False"/>
+
+            <Label Text="3. Date of Visit"/>
+            <Entry x:Name="dateEntry" IsEnabled="False" FontSize="Default"/>
+
+            <Label Text="4. Time of Visit"/>
+            <Entry x:Name="timeEntry" IsEnabled="False" FontSize="Default"/>
+
+            <Label Text="5. LGA"/>
+            <Entry x:Name="lgaEntry" IsEnabled="False" />
+          
+            <Label Text="6. Ward"/>
+            <Entry x:Name="wardEntry" IsEnabled="False" FontSize="Default"/>
+
+            <Label Text="7. Select Settlement"/>
+            <Entry x:Name="settlementEntry" IsEnabled="False" />
+            
+            <!--<Picker x:Name="SettlementPicker"
+                    Title="Select settlement" FontSize="Small"
+                    SelectedIndexChanged="SettlementPicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>Aibasu_Quaters</x:String>
+                        <x:String>Aliya_Quaters</x:String>
+                        <x:String>Aliya_Community_2</x:String>
+                        <x:String>Area_1</x:String>
+                        <x:String>Area_2</x:String>
+                        <x:String>Babban_Kauya</x:String>
+                        <x:String>Bayan_gidan_sarki</x:String>
+                        <x:String>Birnin_Ruwa</x:String>
+                        <x:String>Dan_Umma_A</x:String>
+                        <x:String>Dan_Umma_B</x:String>
+                        <x:String>Fegin_Baza_East</x:String>
+                        <x:String>Fegin_Baza_West</x:String>
+                        <x:String>Fegin_dan_Marke_East</x:String>
+                        <x:String>Fegin_dan_Marke_East_2</x:String>
+                        <x:String>Fegin_dan_Marke_West</x:String>
+                        <x:String>G_R_A</x:String>
+                        <x:String>GAHORI</x:String>
+                        <x:String>GANGARA_2</x:String>
+                        <x:String>GANGARA_Tsafe</x:String>
+                        <x:String>Gidan_anne</x:String>
+                        <x:String>Gss</x:String>
+                        <x:String>Gss Tsafe</x:String>
+                        <x:String>Hadejawa</x:String>
+                        <x:String>Karazube_Zango_B</x:String>
+                        <x:String>Katanga</x:String>
+                        <x:String>Leprosy</x:String>
+                        <x:String>Liman_Dan_Bawa</x:String>
+                        <x:String>Liman_Shehu</x:String>
+                        <x:String>Makera_S_Fegi</x:String>
+                        <x:String>Makera_Sabon_Fegi</x:String>
+                        <x:String>Makera_tsafe</x:String>
+                        <x:String>Mani_Gwanja</x:String>
+                        <x:String>Others</x:String>
+                        <x:String>Rakyabu</x:String>
+                        <x:String>Rimin_Alkali</x:String>
+                        <x:String>Rugar_Tamaje</x:String>
+                        <x:String>Ruggar_Na_Ali</x:String>
+                        <x:String>Sabon_Fegi_A</x:String>
+                        <x:String>Sabon_Fegi_A_2</x:String>
+                        <x:String>Sabon_Fegi_B</x:String>
+                        <x:String>Sabon_Fegi_B_2</x:String>
+                        <x:String>Sabon_Gari</x:String>
+                        <x:String>Sabon_Gida</x:String>
+                        <x:String>Sanda_Community</x:String>
+                        <x:String>Sauri</x:String>
+                        <x:String>Shantali</x:String>
+                        <x:String>Shiyar_Dan_Gande</x:String>
+                        <x:String>Shiyar_Noman</x:String>
+                        <x:String>Shiyar_Wakili</x:String>
+                        <x:String>Shiyar_Yandoto</x:String>
+                        <x:String>Sungawa</x:String>
+                        <x:String>Sungawa_1</x:String>
+                        <x:String>Yalwa_tsafe</x:String>
+                        <x:String>Yan_Alewa</x:String>
+                        <x:String>Zango_A_1</x:String>
+                        <x:String>Zango_A_2</x:String>
+                        <x:String>Zango_Mai_Ungwar</x:String> 
+                    </Picker.Items>
+             </Picker>-->
+
+            <Label Text="8. Settlement Type"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Picker x:Name="SettlementTypePicker"
+                    Title="Select Settlement Type" FontSize="Small"
+                    SelectedIndexChanged="SettlementTypePicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>High Risk</x:String>
+                        <x:String>Normadic</x:String>
+                        <x:String>Rural</x:String>
+                        <x:String>Rural Scattered</x:String>
+                        <x:String>Urban</x:String>
+                    </Picker.Items>
+             </Picker>
+
+            <Label Text="9. Team Code"/>
+            <Entry x:Name="teamCodeEntry" IsEnabled="False" FontSize="Default"/>
+
+            <Label Text="10. Catchment Area HF"/>
+            <Entry x:Name="catchmentAreaHFEntry" IsEnabled="False" />
+            <!--<Picker x:Name="CatchmentAreaHF"
+                    Title="Select Catchment Area HF" FontSize="Small"
+                    SelectedIndexChanged="CatchmentAreaHF_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>Babban_Kauye_Dispensary</x:String>
+                        <x:String>Fegin_ba_Dispensary</x:String>
+                        <x:String>Fegin_Dan_Marke_Dispensary</x:String>
+                        <x:String>Gangara_Dispensary</x:String>
+                        <x:String>Gangara_Dispensary_Tsafe_Central</x:String>
+                        <x:String>Orphan_less_previlage_clinic</x:String>
+                        <x:String>Rakyabu_Dispensary</x:String>
+                        <x:String>Sungawa_Dispensary</x:String>
+                        <x:String>Tsafe_General_Hospital</x:String>
+                        <x:String>Wcwc_Tsafe_Central</x:String>                       
+                    </Picker.Items>
+             </Picker>-->
+
+            <Label Text="B. Vaccination Area Demographics" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="11. GPS Coordinates" />
+            <Label x:Name="LocationLabel" Text="Fetch location..." HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            <Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>  
+            <StackLayout Padding="20">
+            
+            <Button Text="Generate Coordinates" Clicked="OnGetLocationClicked"/>
+            </StackLayout>
+
+            <Label Text="C. HouseHold Information" FontSize="Medium" FontAttributes="Bold"/>
+            
+
+             <Label Text="12. Respondent"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>  
+            <Entry x:Name="RespondentEnty"  FontSize="Default" />
+
+            <Label Text="13. Name of Head of Household"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>  
+            <Entry x:Name="HouseholdNameEnty"  FontSize="Default" />
+
+            <Label Text="14. Caregiver Name"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>  
+            <Entry x:Name="caregiverNameEnty"  FontSize="Default"/>
+
+            <Label Text="15. Caregiver Number"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>  
+            <Entry x:Name="caregiverNumberEnty" FontSize="Default" Keyboard="Numeric"/>
+           
+
+            <Label Text="D. Under 2 Children Status" FontSize="Medium" FontAttributes="Bold"/>
+                
+            <Label Text="16. Child's ID"/>
+            <Entry x:Name="childIDEnty"  FontSize="Default" IsEnabled="False" />
+
+            <Label Text="17. Child's Name"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>  
+            <Entry x:Name="childNameEnty"  FontSize="Default"/>
+
+            <Label Text="18. Child's current Age"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Picker x:Name="AgePicker"
+                    Title="Select Child's current Age" FontSize="Small"
+                    SelectedIndexChanged="AgePicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>Birth - 5 weeks</x:String>
+                        <x:String>6 – 9 weeks</x:String>
+                        <x:String>10 – 13 weeks</x:String>
+                        <x:String>14 weeks – 8 months</x:String>
+                        <x:String>9 months – 11 months</x:String>
+                        <x:String>12 months – 14 months</x:String>
+                        <x:String>15 months – 23 months</x:String>
+                    </Picker.Items>
+             </Picker>
+
+             <Label Text="19. Child's Gender " FontSize="Default"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>
+             <Picker x:Name="GenderPicker"
+                    Title="Select Gender" FontSize="Small"
+                    SelectedIndexChanged="GenderPicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </Picker.Items>
+             </Picker>
+            
+            <Label Text="20. Has Child received any RI antigen previously?" FontSize="Default"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>
+                  <Picker x:Name="ChildreceivedAntigenPicker"
+                    Title="Previously received antigen?" FontSize="Small"
+                    SelectedIndexChanged="ChildreceivedAntigenPicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>Yes</x:String>
+                        <x:String>No</x:String>
+                    </Picker.Items>
+             </Picker>
+             <Label x:Name="administeredAntigens" IsVisible="false"
+                    Text="21. Select ALL antigens previously Received by Child"/><Label Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>               
+                <StackLayout x:Name="CheckBoxGroup" IsVisible="false">
+                        <CheckBox x:Name="OPV0" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="OPVLbl"  Text="OPV 0" />
+                        <CheckBox x:Name="HepB0" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="hepB0Lbl"  Text="HepB 0" />
+                        <CheckBox x:Name="BCG" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False"/>
+                         <Label  x:Name="BCGLbl"  Text="BCG 0" />
+                        <CheckBox x:Name="OPV1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="OPV1Lbl"  Text="OPV 1" />
+                        <CheckBox x:Name="PENTA1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="PENTA1Lbl"  Text="PENTA 1" />
+                        <CheckBox x:Name="PCV1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="PCV1Lbl"  Text="PCV 1" />
+                        <CheckBox x:Name="ROTA1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="ROTA1Lbl"  Text="ROTA 1" />
+                        <CheckBox x:Name="IPV1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="IPV1Lbl"  Text="IPV 1" />
+                        <CheckBox x:Name="OPV2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="OPV2Lbl"  Text="OPV 2" />
+                        <CheckBox x:Name="PENTA2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="PENTA2Lbl"  Text="PENTA 2" />
+                        <CheckBox x:Name="PCV2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="PCV2Lbl"  Text="PCV 2" />
+                        <CheckBox x:Name="ROTA2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="ROTA2Lbl"  Text="ROTA 2" />
+                        <CheckBox x:Name="OPV3" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="OPV3Lbl"  Text="OPV 3" />
+                        <CheckBox x:Name="PENTA3" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="PENTA3Lbl"  Text="PENTA 3" />
+                        <CheckBox x:Name="PCV3" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="PCV3Lbl"  Text="PCV 3" />
+                        <CheckBox x:Name="IPV2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="IPV2Lbl"  Text="IPV 2"/>
+                         <CheckBox x:Name="MEASLES1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="MEASLES1Lbl"  Text="MEASLES1" />
+                        <CheckBox x:Name="YF" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="YFLbl"  Text="Yellow Fever" />
+                        <CheckBox x:Name="MENA" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="MENALbl"  Text="Meningitis (Men A)" />
+                        <CheckBox x:Name="MEASLES2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" />
+                         <Label  x:Name="MEASLES2Lbl"  Text="MEASLES2"/>
+
+                </StackLayout>
+
+                <Label x:Name="AEFIAfterLbl" Text="22. Was there any AEFI after vaccination?" FontSize="Default"/>
+                <Label x:Name="AEFIAfterLblComp" Text="*" TextColor="Red" VerticalOptions="Center" FontAttributes="Bold"/>
+
+                <StackLayout x:Name="RadioButtonGroupAEFI">
+                <RadioButton x:Name="AEFIYes" 
+                     Content="Yes" FontSize="Small"
+                     CheckedChanged="AEFI_CheckedChanged"/>
+                     
+                 <RadioButton x:Name="AEFINo" 
+                     Content="No" FontSize="Small"
+                     CheckedChanged="AEFI_CheckedChanged"/>
+                </StackLayout>
+
+                <Label x:Name="AEFITypeLabel" Text="23. If yes, what type of AEFI?" FontSize="Default" IsVisible="False"/>
+
+                <StackLayout x:Name="RadioButtonGroupAEFIType" IsVisible="False">
+                    <RadioButton x:Name="SeriousAEFI" 
+                         Content="Serious" FontSize="Small"
+                         CheckedChanged="AEFIType_CheckedChanged"/>
+                     <RadioButton x:Name="NonSeriousAEFI" 
+                         Content="Non-Serious" FontSize="Small"
+                         CheckedChanged="AEFIType_CheckedChanged"/>
+                 </StackLayout>
+
+                <StackLayout Padding="20">
+                <Button FontSize="Default" Text="Submit" Clicked="Submit_Clicked" />
+            </StackLayout>
+        
+        </StackLayout>
+     </ScrollView>
+
+    </Grid>
+
+
+
+    <!-- BEGIN Assessment Page-->
+    
+           
+       
+   
+
+
+    <!--END Assessment Listing-->
+
+</ContentPage>
+
+
+

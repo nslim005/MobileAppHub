@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ZeroDoseMetrics.CompletedPage">
+
+
+    <CollectionView x:Name="ChildrenLineList">
+        <!--<CollectionView.Header>
+            <Label Text="Zero Dose and Under Immunized Children Line-list"
+                   FontSize="Small"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"
+                   Padding="10"
+                  />
+        </CollectionView.Header>-->
+        <CollectionView.Header>
+            <Grid Padding="10" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="100"/>
+                  
+                </Grid.ColumnDefinitions>
+                <Label Text="Child" Grid.Column="0" FontAttributes="Bold"/>
+                <Label Text="Caregiver" Grid.Column="1" FontAttributes="Bold"/>
+                <Label Text="Settelment" Grid.Column="2" FontAttributes="Bold"/>
+                <Label Text="Status" Grid.Column="3" FontAttributes="Bold"/>
+               
+            </Grid>
+        </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Label Text="{Binding ChildName}" FontSize="Small" WidthRequest="80"/>
+                    <Label Text="{Binding CaregiverName}" FontSize="Small" WidthRequest="70"/>
+                    <Label Text="{Binding SettlementName}" FontSize="Small" WidthRequest="90"/>
+                    <Label Text="COMPLETED" FontSize="Small" WidthRequest="100" TextColor="Green"/>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>
+

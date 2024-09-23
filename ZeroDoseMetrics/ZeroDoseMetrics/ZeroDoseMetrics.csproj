@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.1874" />
+    <PackageReference Include="MySqlConnector" Version="2.3.7" />
+    <PackageReference Include="System.Data.Odbc" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="RestSharp" Version="112.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Model\" />
+    <None Remove="ViewModel\" />
+    <None Remove="OOSZamfara\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="OOSZamfara\" />
+  </ItemGroup>
+</Project>

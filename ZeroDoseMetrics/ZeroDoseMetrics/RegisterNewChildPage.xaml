@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ZeroDoseMetrics.RegisterNewChildPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="save"
+                     Clicked="ToolbarItem_Clicked"/>
+        <!--<ToolbarItem Text="clear"
+                     Clicked="HandleDelete_Clicked"/>-->
+        <ToolbarItem Text="export"
+                     Clicked="Export_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="childNameEntry" Placeholder="Enter Child Name"/>
+            <Entry x:Name="childAgeEntry" Placeholder="Enter Child Age"/>
+            <Entry x:Name="caregiverNameEntry" Placeholder="Enter Caregiver Name"/>
+            <Entry x:Name="caregiverContactEntry" Placeholder="Enter Caregiver contact Number"/>
+            <Entry x:Name="settlementEntry" Placeholder="Enter Settlement"/>
+            <Entry x:Name="structureEntry" Placeholder="structureID"/>
+            <!--<Entry x:Name="latitudeEntry" Placeholder="Lat"/>
+            <Entry x:Name="longitudeEntry" Placeholder="long"/>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

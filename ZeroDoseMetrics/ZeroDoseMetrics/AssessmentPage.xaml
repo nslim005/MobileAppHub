@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ZeroDoseMetrics"
+    x:Class="ZeroDoseMetrics.AssessmentPage">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="View Assessments"
+                     Clicked="ViewAssement_ToolBar"/>
+
+        <ToolbarItem Text="save"
+                     Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+         <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout x:Name="updateInfo" Padding="10" >
+            <Label Text="A. Identifying Information" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="1. Data Collector Name" />
+            <Entry x:Name="interviewerNameEntry" IsEnabled="False" />
+
+            <Label Text="2. Data Collector Phone Number"/>
+            <Entry x:Name="phoneNoEntry" IsEnabled="False" />
+          
+            <Label Text="3. Team Code"/>
+            <Entry x:Name="teamCodeEntry" IsEnabled="False" />
+
+            <Label Text="4. Settlement"/>
+            <Entry x:Name="settlementEntry" IsEnabled="False" />
+
+            <StackLayout Padding="20">
+            <Label x:Name="LocationLabel" Text="Fetching location..." HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            <Button Text="GPS Coordinate of Structure" Clicked="OnGetLocationClicked" />
+            </StackLayout>
+
+            <Label Text="Address"/>
+            <Entry x:Name="addressEntry" />
+
+            <Label Text="6. Respondent"/>
+                <StackLayout x:Name="RadioButtonGroupRespondent">
+                    <RadioButton x:Name="Option1Father" 
+                             Content="Father" FontSize="Small" Value="Father" GroupName="Respondent"
+                             CheckedChanged="OnRadioButtonCheckedChangedRespondent"/>
+                     
+                    <RadioButton x:Name="Option2Mother" 
+                             Content="Mother" FontSize="Small" Value="Mother" GroupName="Respondent"
+                             CheckedChanged="OnRadioButtonCheckedChangedRespondent"/>
+
+                    <RadioButton x:Name="Option3Caregiver" 
+                             Content="Caregiver" FontSize="Small" Value="Caregiver" GroupName="Respondent"
+                             CheckedChanged="OnRadioButtonCheckedChangedRespondent"/>
+
+                    <RadioButton x:Name="Option4Others" 
+                             Content="Others" FontSize="Small" Value="Others" GroupName="Respondent"
+                             CheckedChanged="OnRadioButtonCheckedChangedRespondent"/>
+                </StackLayout>
+
+            <Entry x:Name="others" Placeholder="Specify" IsVisible="true"/>
+
+
+             <Label Text="B. Zero Dose Listing" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="7. Child ID"/>
+            <Entry x:Name="childID" IsEnabled="False" />
+
+            <Label Text="8. Caregiver's Name"/>
+            <Entry x:Name="caregiverNameEntry" />
+
+            <Label Text="9. Caregiver's Phone No."/>
+            <Entry x:Name="caregiverContactEntry" Keyboard="Numeric" />
+
+            <Label Text="10. Child's Name"/>
+            <Entry x:Name="childName"  />
+
+            <Label Text="11. Child's Age during Enumeration"/>
+            <Entry x:Name="childAgeEntry" IsEnabled="False" />
+
+            <Picker x:Name="AgePickerCurrent"
+                            Title="12. Select Child's current Age" FontSize="Small"
+                    SelectedIndexChanged="AgePicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand">
+                <!-- Items for Picker -->
+                    <Picker.Items>
+                        <x:String>less than 6 weeks</x:String>
+                        <x:String>6 – 9 weeks</x:String>
+                        <x:String>10 – 13 weeks</x:String>
+                        <x:String>14 weeks – 8 months</x:String>
+                        <x:String>9 months – 14 months</x:String>
+                        <x:String>15 months – 23 months</x:String>
+                        <x:String>24 – 59 months</x:String>
+                    </Picker.Items>
+             </Picker>
+            <Label Text="13. Has Child received any RI Antigen after the Enumeration?"
+                   HorizontalOptions="Start" />
+
+            <StackLayout x:Name="RadioButtonGroupReceivedAntigen">
+                <RadioButton x:Name="Option1RadioButton" 
+                     Content="Yes" FontSize="Small" Value="Yes" GroupName="ReceivedAntigen"
+                     CheckedChanged="OnRadioButtonCheckedChanged"/>
+                     
+                 <RadioButton x:Name="Option2RadioButton" 
+                     Content="No" FontSize="Small" Value="No" GroupName="ReceivedAntigen"
+                     CheckedChanged="OnRadioButtonCheckedChanged"/>
+            </StackLayout>
+
+            <Label x:Name="childHaveVaccinationCard"
+                   Text="14. Does Child have a vaccination Card?" 
+                  FontSize="Small" HorizontalOptions="Start" IsVisible="false"/>
+                <Label x:Name="childHaveVaccinationCardHint" Text="Child Health Card should be used to verify the child's immunization status.
+                       Where it is not available, a caregiver's recall should be used instead" 
+                  FontSize="Micro" HorizontalOptions="Start" IsVisible="false" FontAttributes="Italic"/>
+                <StackLayout x:Name="RadioButtonGroupHaveVaccinationCard">
+                 <RadioButton x:Name="YesCardSeen" 
+                     Content="Yes, card seen" FontSize="Small" Value="Yes, card seen" GroupName="HaveVaccinationCard"
+                     IsVisible="false"/>
+                  <RadioButton x:Name="YesCardVerbal" 
+                     Content="Yes, card NOT seen (Verbal)" FontSize="Small" Value="Yes, card NOT seen (Verbal)" GroupName="HaveVaccinationCard"
+                     IsVisible="false"/>
+                    <RadioButton x:Name="CaregiverCanRecall" 
+                     Content="Misplaced/Care Giver can recall" FontSize="Small" Value="Misplaced/Care Giver can recall" GroupName="HaveVaccinationCard"
+                     IsVisible="false"/>
+                 <RadioButton x:Name="CaregiverCannotRecall" 
+                     Content="Misplaced/Care Giver CANNOT recall" FontSize="Small" Value="Misplaced/Care Giver CANNOT recall" GroupName="HaveVaccinationCard"
+                     IsVisible="false"/>
+                 <RadioButton x:Name="No" 
+                     Content="No" FontSize="Small" Value="No" GroupName="HaveVaccinationCard"
+                     IsVisible="false"/>
+                  </StackLayout>
+                <Label x:Name="administeredAntigens" Text="15. Select all adminstered vaccines that the 
+                       child has received after enumeration exercise " IsVisible="false"/>
+
+                <StackLayout x:Name="CheckBoxGroup">
+                        <CheckBox x:Name="OPV0" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="OPVLbl"  Text="OPV 0" IsVisible="false"/>
+                        <CheckBox x:Name="HepB0" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="hepB0Lbl"  Text="HepB 0" IsVisible="false"/>
+                        <CheckBox x:Name="BCG" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="BCGLbl"  Text="BCG 0" IsVisible="false"/>
+                        <CheckBox x:Name="OPV1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="OPV1Lbl"  Text="OPV 1" IsVisible="false"/>
+                        <CheckBox x:Name="PENTA1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="PENTA1Lbl"  Text="PENTA 1" IsVisible="false"/>
+                        <CheckBox x:Name="PCV1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="PCV1Lbl"  Text="PCV 1" IsVisible="false"/>
+                        <CheckBox x:Name="ROTA1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="ROTA1Lbl"  Text="ROTA 1" IsVisible="false"/>
+                        <CheckBox x:Name="IPV1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="IPV1Lbl"  Text="IPV 1" IsVisible="false"/>
+                        <CheckBox x:Name="OPV2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="OPV2Lbl"  Text="OPV 2" IsVisible="false"/>
+                        <CheckBox x:Name="PENTA2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="PENTA2Lbl"  Text="PENTA 2" IsVisible="false"/>
+                        <CheckBox x:Name="PCV2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="PCV2Lbl"  Text="PCV 2" IsVisible="false"/>
+                        <CheckBox x:Name="ROTA2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="ROTA2Lbl"  Text="ROTA 2" IsVisible="false"/>
+                        <CheckBox x:Name="OPV3" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="OPV3Lbl"  Text="OPV 3" IsVisible="false"/>
+                        <CheckBox x:Name="PENTA3" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="PENTA3Lbl"  Text="PENTA 3" IsVisible="false"/>
+                        <CheckBox x:Name="PCV3" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="PCV3Lbl"  Text="PCV 3" IsVisible="false"/>
+                        <CheckBox x:Name="IPV2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="IPV2Lbl"  Text="IPV 2" IsVisible="false"/>
+                         <CheckBox x:Name="MEASLES1" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="MEASLES1Lbl"  Text="MEASLES1" IsVisible="false"/>
+                        <CheckBox x:Name="YF" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="YFLbl"  Text="Yellow Fever" IsVisible="false"/>
+                        <CheckBox x:Name="MENA" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="MENALbl"  Text="Meningitis (Men A)" IsVisible="false"/>
+                        <CheckBox x:Name="MEASLES2" 
+                                      Color="#1F90FF" 
+                                      IsChecked="False" IsVisible="false"/>
+                         <Label  x:Name="MEASLES2Lbl"  Text="MEASLES2" IsVisible="false"/>
+
+                </StackLayout>
+                
+             <Label x:Name="motivation" Text="16. What motivated you to take your child for vaccine(s) uptake " IsVisible="false"/>
+                 <CheckBox x:Name="availabilityOfReferralCOupon" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="availabilityOfReferralCOuponLbl"  Text="Availability of referral coupon"  IsVisible="false"/>
+                <CheckBox x:Name="preventChildFromDisease" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="preventChildFromDiseaseLbl"  Text="To protect my child from preventable diseases"  IsVisible="false"/>
+                <CheckBox x:Name="advice" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="adviceLbl"  Text="Advice from a healthcare worker/community mobilizer"  IsVisible="false"/>
+                <CheckBox x:Name="diseaseOutbreak" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="diseaseOutbreakLbl"  Text="Due to a recent outbreak of a disease in the area"  IsVisible="false"/>
+                <CheckBox x:Name="recommendation" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="recommendationLbl"  Text="Recommendations from family/friends/religious leaders e.t.c"  IsVisible="false"/>
+                 <CheckBox x:Name="ensurewellbeing" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="ensurewellbeingLbl"  Text="To ensure the overall health and well-being of my child"  IsVisible="false"/>
+                <CheckBox x:Name="preventdiseaseSpread" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="preventdiseaseSpreadLbl"  Text="To prevent the spread of diseases in the community"  IsVisible="false"/>
+                <CheckBox x:Name="others_checkboxmotivated" 
+                              Color="#1F90FF" 
+                              IsVisible="false" CheckedChanged="others_checkboxmotivated_CheckedChanged" />
+                    <Label x:Name="others_checkboxmotivatedLbl" Text="Others" IsVisible="false"/>
+                    <Entry x:Name="others_checkboxmotivatedEntry" Placeholder="Specify"  IsVisible="false"/>
+
+
+            <Label x:Name="QuestionLabel" Text="17. State reason why caregiver did not take child for vaccine(s) uptake" 
+                  FontSize="Small" HorizontalOptions="Start"/>
+            <!--<Label Text="Latitude"/>
+            <Entry x:Name="latitudeEntry" IsEnabled="False" />
+            <Label Text="Longitude"/>
+            <Entry x:Name="longitudeEntry" IsEnabled="False" />-->
+            
+              <!--Define CheckBox 1--> 
+                    <CheckBox x:Name="misplacedCoupon" 
+                              Color="#1F90FF" 
+                              IsChecked="False"
+                              />
+                    <Label x:Name="misplacedCouponLbl" Text="Misplaced coupon" />
+
+                     <!--Define CheckBox 2--> 
+                    <CheckBox x:Name="unawareOfVaccinationNeed" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label  x:Name="unawareOfVaccinationNeedLbl"  Text="Unaware of the need for vaccination" />
+
+                     <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="didNotKnowChildNeedVaccine" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label  x:Name="didNotKnowChildNeedVaccineLbl" Text="Did not know the child needed other vaccines" />
+                     <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="vaccinationNotImportant" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label  x:Name="vaccinationNotImportantLbl" Text="Feel vaccination is not important" />
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="doNotTrustVaccine" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label  x:Name="doNotTrustVaccineLbl" Text="Do not trust vaccines" />
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="fearOfSideEffect" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label  x:Name="fearOfSideEffectLbl" Text="Fear of side effects/adverse events" />
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="motherTooBusy" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label x:Name="motherTooBusyLbl" Text="Mother too busy" />
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="forgotToTakeChild" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label x:Name="forgotToTakeChildLbl" Text="Forgot to take child for vaccination" />
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="headOfHousWontAllow" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label x:Name="headOfHousWontAllowLbl" Text="Husband/head of household won't allow" />
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="unableToPayTransport" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label x:Name="unableToPayTransportLbl" Text="Unable to pay for transport" />
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="familiyProblemillness" 
+                              Color="#1F90FF" 
+                              IsChecked="False" />
+                    <Label x:Name="familiyProblemillnessLbl" Text="Family problems, like the illness of the mother" />
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="others_checkbox" 
+                              Color="#1F90FF" 
+                              IsVisible="false" CheckedChanged="others_checkbox_CheckedChanged"/>
+                    <Label x:Name="others_checkboxLbl" Text="Others"/>
+                 <Entry x:Name="others_specifyChkboxEntry" Placeholder="Specify"/>
+                <Label Text="C.  Identification of newly Identified Under Five" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="18. Is there any Child less than 5 years that was NOT enumerated in March?"/>
+                <RadioButton x:Name="YesUnderFive" 
+                     Content="Yes" FontSize="Small"
+                     CheckedChanged="UnderFive_CheckedChanged"/>
+                     
+                 <RadioButton x:Name="NoUnderFive" 
+                     Content="No" FontSize="Small"
+                     CheckedChanged="UnderFive_CheckedChanged"/>
+
+                <Label x:Name="summary" Text="CHECK THE QUESTIONNAIRE FOR COMPLETION OF ALL QUESTIONS.
+                       THEN, END THE INTERVIEW AND THANK THE MOTHER/CAREGIVER
+                       FOR PARTICIPATING." FontSize="Medium" FontAttributes="Bold" IsVisible="false"/>
+
+                <Label x:Name="instruction" FontAttributes="Bold" FontSize="Small" Text="For each of the Children that were not previously enumerated, fill below and Click ADD" IsVisible="false"/>
+                <Label x:Name="childNameLbl" Text=" 19. Child's Name" IsVisible="false"/>
+                <Entry x:Name="childNameU5" IsVisible="False" />
+
+                <!--<Label Text="Select Age" IsVisible="false"/>-->
+                    <Picker x:Name="AgePickerUnderFive"
+                            Title="20. Select Child Age" FontSize="Small"
+                    SelectedIndexChanged="AgePicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand" IsVisible="false">
+                <!-- Items for Picker -->
+                    <Picker.Items>
+                        <x:String>less than 6 weeks</x:String>
+                        <x:String>6 – 9 weeks</x:String>
+                        <x:String>10 – 13 weeks</x:String>
+                        <x:String>14 weeks – 8 months</x:String>
+                        <x:String>9 months – 14 months</x:String>
+                        <x:String>15 months – 23 months</x:String>
+                        <x:String>24 – 59 months</x:String>
+                    </Picker.Items>
+                    </Picker>
+
+                   <Picker x:Name="genderPickerUnderFive"
+                            Title="21. Child's Gender" FontSize="Small"
+                    SelectedIndexChanged="genderPicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand" IsVisible="false">
+                <!-- Items for Picker -->
+                    <Picker.Items>
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </Picker.Items>
+                    </Picker>
+
+                 <Label x:Name="caregiverNameLblU5" Text="22. Caregiver's Name" IsVisible="False"/>
+                 <Entry x:Name="caregiverNameEntryU5" IsVisible="False" />
+
+                <Label x:Name="caregiverNumberLblU5" Text="23. Caregiver's Phone No." IsVisible="False"/>
+                <Entry x:Name="caregiverContactEntryU5" IsVisible="False" Keyboard="Numeric"/>
+
+                 <Picker x:Name="CommMethodPicker"
+                            Title="24. Preferred method of communication" FontSize="Small"
+                    SelectedIndexChanged="CommMethodPicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand" IsVisible="false">
+                <!-- Items for Picker -->
+                    <Picker.Items>
+                        <x:String>SMS</x:String>
+                        <x:String>CALL</x:String>
+                    </Picker.Items>
+                 </Picker>
+                <Picker x:Name="CommLangPicker"
+                            Title="25. Preferred Language of communication" FontSize="Small"
+                    SelectedIndexChanged="CommLangPicker_SelectedIndexChanged"
+                    HorizontalOptions="FillAndExpand" IsVisible="false">
+                <!-- Items for Picker -->
+                    <Picker.Items>
+                        <x:String>Hausa</x:String>
+                        <x:String>English</x:String>
+                    </Picker.Items>
+                 </Picker>
+
+                 <Label x:Name="ChildReceivedAntigenU5" Text="26. Has Child received any RI Antigen after the Enumeration?"
+                   HorizontalOptions="Start" IsVisible="false"/>
+
+                <RadioButton x:Name="Option1RadioButtonU5" 
+                     Content="Yes" FontSize="Small"
+                     CheckedChanged="Option1RadioButtonU5_CheckedChanged" IsVisible="false"/>
+                     
+                 <RadioButton x:Name="Option2RadioButtonU5" 
+                     Content="No" FontSize="Small"
+                     CheckedChanged="Option1RadioButtonU5_CheckedChanged" IsVisible="false"/>
+
+                 <Label x:Name="childHaveVaccinationCardU5"
+                   Text="27. Does Child have a vaccination Card?" 
+                  FontSize="Small" HorizontalOptions="Start" IsVisible="false"/>
+                <Label x:Name="childHaveVaccinationCardHintU5" Text="Child Health Card should be used to verify the child's immunization status.
+                       Where it is not available, a caregiver's recall should be used instead" 
+                  FontSize="Micro" HorizontalOptions="Start" IsVisible="false" FontAttributes="Italic"/>
+
+                 <RadioButton x:Name="YesCardSeenU5" 
+                     Content="Yes, card seen" FontSize="Small"
+                     IsVisible="false"/>
+                  <RadioButton x:Name="YesCardVerbalU5" 
+                     Content="Yes, card NOT seen (Verbal)" FontSize="Small"
+                     IsVisible="false"/>
+                    <RadioButton x:Name="CaregiverCanRecallU5" 
+                     Content="Misplaced/Care Giver can recall" FontSize="Small"
+                     IsVisible="false"/>
+                 <RadioButton x:Name="CaregiverCannotRecallU5" 
+                     Content="Misplaced/Care Giver CANNOT recall" FontSize="Small"
+                     IsVisible="false"/>
+                 <RadioButton x:Name="NoU5" 
+                     Content="No" FontSize="Small"
+                     IsVisible="false"/>
+
+
+                <Label x:Name="administeredAntigensU5" Text="28. Select all adminstered vaccines that the 
+                       child has received after enumeration exercise " IsVisible="false"/>
+
+                <CheckBox x:Name="OPV0U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="OPVLblU5"  Text="OPV 0" IsVisible="false"/>
+                <CheckBox x:Name="HepB0U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="hepB0LblU5"  Text="HepB 0" IsVisible="false"/>
+                <CheckBox x:Name="BCGU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="BCGLblU5"  Text="BCG 0" IsVisible="false"/>
+                <CheckBox x:Name="OPV1U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="OPV1LblU5"  Text="OPV 1" IsVisible="false"/>
+                <CheckBox x:Name="PENTA1U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="PENTA1LblU5"  Text="PENTA 1" IsVisible="false"/>
+                <CheckBox x:Name="PCV1U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="PCV1LblU5"  Text="PCV 1" IsVisible="false"/>
+                <CheckBox x:Name="ROTA1U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="ROTA1LblU5"  Text="ROTA 1" IsVisible="false"/>
+                <CheckBox x:Name="IPV1U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="IPV1LblU5"  Text="IPV 1" IsVisible="false"/>
+                <CheckBox x:Name="OPV2U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="OPV2LblU5"  Text="OPV 2" IsVisible="false"/>
+                <CheckBox x:Name="PENTA2U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="PENTA2LblU5"  Text="PENTA 2" IsVisible="false"/>
+                <CheckBox x:Name="PCV2U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="PCV2LblU5"  Text="PCV 2" IsVisible="false"/>
+                <CheckBox x:Name="ROTA2U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="ROTA2LblU5"  Text="ROTA 2" IsVisible="false"/>
+                <CheckBox x:Name="OPV3U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="OPV3LblU5"  Text="OPV 3" IsVisible="false"/>
+                <CheckBox x:Name="PENTA3U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="PENTA3LblU5"  Text="PENTA 3" IsVisible="false"/>
+                <CheckBox x:Name="PCV3U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="PCV3LblU5"  Text="PCV 3" IsVisible="false"/>
+                <CheckBox x:Name="IPV2U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="IPV2LblU5"  Text="IPV 2" IsVisible="false"/>
+                 <CheckBox x:Name="MEASLES1U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="MEASLES1LblU5"  Text="MEASLES1" IsVisible="false"/>
+                <CheckBox x:Name="YFU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="YFLblU5"  Text="Yellow Fever" IsVisible="false"/>
+                <CheckBox x:Name="MENAU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="MENALblU5"  Text="Meningitis (Men A)" IsVisible="false"/>
+                <CheckBox x:Name="MEASLES2U5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                 <Label  x:Name="MEASLES2LblU5"  Text="MEASLES2" IsVisible="false"/>
+
+                 <Label x:Name="QuestionLabelU5" Text="29. If not vaccinated/fully vaccinated, state reason for none vaccination/dropout" 
+                  FontSize="Small" HorizontalOptions="Start" IsVisible="false"/>
+            <!--<Label Text="Latitude"/>
+            <Entry x:Name="latitudeEntry" IsEnabled="False" />
+            <Label Text="Longitude"/>
+            <Entry x:Name="longitudeEntry" IsEnabled="False" />-->
+            
+              <!--Define CheckBox 1--> 
+                  
+
+                     <!--Define CheckBox 2--> 
+                    <CheckBox x:Name="unawareOfVaccinationNeedU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="unawareOfVaccinationNeedLblU5"  Text="Unaware of the need for vaccination" IsVisible="false"/>
+
+                     <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="didNotKnowChildNeedVaccineU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="didNotKnowChildNeedVaccineLblU5" Text="Did not know the child needed other vaccines" IsVisible="false" />
+                     <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="vaccinationNotImportantU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="vaccinationNotImportantLblU5" Text="Feel vaccination is not important" IsVisible="false"/>
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="doNotTrustVaccineU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="doNotTrustVaccineLblU5" Text="Do not trust vaccines" IsVisible="false"/>
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="fearOfSideEffectU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label  x:Name="fearOfSideEffectLblU5" Text="Fear of side effects/adverse events" IsVisible="false"/>
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="motherTooBusyU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label x:Name="motherTooBusyLblU5" Text="Mother too busy" IsVisible="false"/>
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="forgotToTakeChildU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label x:Name="forgotToTakeChildLblU5" Text="Forgot to take child for vaccination" IsVisible="false"/>
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="headOfHousWontAllowU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label x:Name="headOfHousWontAllowLblU5" Text="Husband/head of household won't allow" IsVisible="false"/>
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="unableToPayTransportU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label x:Name="unableToPayTransportLblU5" Text="Unable to pay for transport" IsVisible="false"/>
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="familiyProblemillnessU5" 
+                              Color="#1F90FF" 
+                              IsChecked="False" IsVisible="false"/>
+                    <Label x:Name="familiyProblemillnessLblU5" Text="Family problems, like the illness of the mother" IsVisible="false"/>
+                 <!--Define CheckBox 3--> 
+                    <CheckBox x:Name="others_checkboxU5" 
+                              Color="#1F90FF" 
+                              IsVisible="false" CheckedChanged="others_checkboxU5_CheckedChanged"/>
+                    <Label x:Name="others_checkboxLblU5" Text="Others" IsVisible="false"/>
+                 <Entry x:Name="others_specifyChkboxEntryU5" Placeholder="Specify" IsVisible="false"/>
+                <Button x:Name="submitZDBtn" Text="Add New Under Five" Clicked="submitZDBtn_Clicked" IsVisible="false"/>
+           
+        
+        </StackLayout>
+     </ScrollView>
+
+    </Grid>
+
+
+
+    <!-- BEGIN Assessment Page-->
+    
+           
+       
+   
+
+
+    <!--END Assessment Listing-->
+
+</ContentPage>
+

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ZeroDoseMetrics.ChildrenPage">
+        <!-- BEGIN Children Listing Page-->
+        <!--<StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label  Grid.Row="0"  Text="Zero Dose and Under Immunized Children Line-list" FontAttributes="Bold" FontSize="Small"
+                       HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                <StackLayout Grid.Row="1">
+                    <Button x:Name="addBtn" Text="ADD"/>
+                </StackLayout>
+                    <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" Margin="10" Padding="10" HorizontalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>   
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>  
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Child" Grid.Column="0" Grid.Row="0" Style="{ DynamicResource headerTablet}"/>
+                        <Label Text="Caregiver" Grid.Column="1" Grid.Row="0" Style="{ DynamicResource headerTablet}"/>
+                        <Label Text="Settlement" Grid.Column="2" Grid.Row="0" Style="{ DynamicResource headerTablet}"/>
+                        <Label Text="Str ID" Grid.Column="3" Grid.Row="0" Style="{ DynamicResource headerTablet}"/>
+
+                        <BoxView Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="2"
+                                 BackgroundColor="DarkBlue">
+                        </BoxView>
+                        <ListView IsPullToRefreshEnabled="False" x:Name="ChildrenLineList" Grid.Row="4"
+                                  ItemsSource="{Binding linelists}" Margin="4">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid VerticalOptions="CenterAndExpand" BackgroundColor="white" ColumnSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"/>   
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="1*"/>  
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding ChildName,Mode=TwoWay}" Grid.Column="0" Grid.Row="0" Style="{ DynamicResource detailTablet}"/>
+                                        <Label Text="{Binding CaregiverName,Mode=TwoWay}" Grid.Column="1" Grid.Row="0" Style="{ DynamicResource detailTablet}"/>
+                                        <Label Text="{Binding SettlementName,Mode=TwoWay}" Grid.Column="2" Grid.Row="0" Style="{ DynamicResource detailTablet}"/>
+                                        <Label Text="{Binding StructureID,Mode=TwoWay}" Grid.Column="3" Grid.Row="0" Style="{ DynamicResource detailTablet}"/>
+
+                                    </Grid>
+
+                                </ViewCell>
+
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+
+                        </ListView>
+                        
+                        
+                    </Grid>
+                
+            </Grid>
+        </StackLayout>-->
+        
+        <CollectionView x:Name="ChildrenLineList"
+                        >
+        <!--SelectionMode="Single" SelectionChanged="ChildrenLineList_SelectionChanged   property of the collectionview"--> 
+        <!--<CollectionView.Header>
+            <Label Text="Zero Dose and Under Immunized Children Line-list"
+                   FontSize="Small"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"
+                   Padding="10"
+                  />
+        </CollectionView.Header>-->
+        <CollectionView.Header>
+            <Grid Padding="10" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="30"/> 
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+           
+                <Label Text="Child" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Caregiver" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Settelment" Grid.Column="2" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text=" " Grid.Column="3" />
+                <Label Text=" " Grid.Column="4" />
+            </Grid>
+        </CollectionView.Header>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <!--<Label Text="{Binding Id}" WidthRequest="20"/>-->
+                    <Label Text="{Binding ChildName}" FontSize="Small" WidthRequest="100"/>
+                    <Label Text="{Binding CaregiverName}" FontSize="Small" WidthRequest="100"/>
+                    <Label Text="{Binding SettlementName}" FontSize="Small" WidthRequest="100"/>
+                    <Button Text="Navigate"  Clicked="Button_Clicked" CommandParameter="{Binding .}" />
+                    <Button Text="Assess"    Clicked="Button_Assess" CommandParameter="{Binding .}" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+        <!--END Children Page Listing-->
+
+</ContentPage>
+
